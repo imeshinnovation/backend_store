@@ -1,2 +1,1 @@
-# backend_store
-Backend Realizado por el Curso
+Entidades a Cargo de William David

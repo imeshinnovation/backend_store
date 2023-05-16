@@ -1,2 +1,1 @@
-# backend_store
-Backend Realizado por el Curso
+A Cargo de Jeison
