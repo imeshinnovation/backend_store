@@ -9,3 +9,17 @@ const conexion = mariadb.createPool({
     database: env.DATABASE
 
 })
+
+module.exports = { 
+    promesa() {
+        return new Promise((respuesta, rechazo) => {
+            pozo.getConnection()
+            .then((conexion) => {
+                respuesta(conexion)
+            })
+            .catch((error) => {
+                rechazo(error)
+            })
+        })
+    }
+}
