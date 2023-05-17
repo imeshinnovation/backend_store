@@ -10,7 +10,7 @@ module.exports = {
     },
     add: async (body) =>{
         try{
-            const{nombre, apellidos, email, password} = body
+            const{nombres, apellidos, email, password} = body
             const nuevousuario = await querys(`INSERT INTO persona (nombres, apellidos, email, password) VALUES ("${nombres}", "${apellidos}", "${email}", MD5(SHA2("${password}", 256)))`)
             return nuevousuario.affectedRows > 0 ? {'code':1} : {'code': 0}
         } catch (err){
