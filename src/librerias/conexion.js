@@ -2,7 +2,7 @@ const mariadb = require('mariadb')
 
 const env = process.env
 
-const conexion = mariadb.createPool({
+const enlace = mariadb.createPool({
     host: env.DBHOST,
     user: env.DBUSER,
     password: env.DBPASS,
@@ -13,7 +13,7 @@ const conexion = mariadb.createPool({
 module.exports = { 
     promesa() {
         return new Promise((respuesta, rechazo) => {
-            pozo.getConnection()
+            enlace.getConnection()
             .then((conexion) => {
                 respuesta(conexion)
             })

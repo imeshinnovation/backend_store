@@ -1,7 +1,7 @@
 const conexion = require('./conexion')
 
 const querys = async (sql) => {
-    const conn = await conexion.promesa()
+    const conn = await enlace.promesa()
     const resultado = await conn.query(sql, (err, resultado) => {
         if(err) throw err
         return resultado
