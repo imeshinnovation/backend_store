@@ -2,9 +2,9 @@
   "name": "backend_store",
   "version": "1.0.0",
   "description": "Backend Realizado por el Curso",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --watch"
   },
   "keywords": [],
   "author": "",
