@@ -12,7 +12,7 @@ module.exports = {
         try{
             const{nombres, apellidos, email, password} = data
             const newuser = await querys(`INSERT INTO persona (nombres, apellidos, email, password) VALUES ("${nombres}", "${apellidos}", "${email}", MD5(SHA2("${password}", 256)))`)
-            return newuser.affectedRows > 0 ? {'code':1} : {'code': 0}
+            return newuser.affectedRows > 0 ? {'code': 'Usuario registrado con exito'} : {'code': 'Usuario ya esta registrado'}
         } catch (err){
             return {'code': err.text}
         }
