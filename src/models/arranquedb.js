@@ -1,6 +1,6 @@
 const mariadb = require('mariadb')
 require('dotenv').config()
-const env = procces.env
+const env = process.env
 
 mariadb.createConnection({
     host: env.DBHOST,
