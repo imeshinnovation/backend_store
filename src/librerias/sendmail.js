@@ -1,10 +1,10 @@
 const mailer = require('nodemailer');
 
 const transport = mailer.createTransport({
-    host: 'smtp.hotmail.com',
-    port: 587,
+    host: 'smtp.live.com',
+    port: 465,
     secureConnection: false,
-    debug: false,
+    debug: true,
     logger: true,
     secure: false,
     requireTLS: false,
