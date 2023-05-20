@@ -19,7 +19,7 @@ const transport = mailer.createTransport({
 
 const sendEmail = async (Email, Subject, Message, bcco = "correo de copia") => {
     const envio = await transport.sendMail({
-        from: 'correo de hotmail',
+        from: 'cursobackendtest@hotmail.com',
         to: Email,
         bcc: bcco,
         subject: Subject,
