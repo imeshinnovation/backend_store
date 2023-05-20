@@ -9,8 +9,8 @@ const transport = mailer.createTransport({
     secure: false,
     requireTLS: false,
     auth: {
-        user: '',
-        pass: ''
+        user: 'cursobackendtest@hotmail.com',
+        pass: 'Colombia2023'
     },
     tls: {
         ciphers: 'SSLv3'
