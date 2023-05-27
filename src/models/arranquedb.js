@@ -28,7 +28,7 @@ mariadb.createConnection({
     })
 
     //actuaizaciones registradas en evento de bodega
-    // conexion.query("DELIMITER $$ CREATE trigger insert_bodega_event AFTER insert on bodega for each row BEGIN SET @dato = new.articulo; insert into log (evento) value(CONCAT('se creo un evento en la tabla bodega: ', @dato)); end $$ ")
+    //conexion.query("DELIMITER $$ CREATE trigger insert_bodega_event AFTER insert on bodega for each row BEGIN SET @dato = new.articulo; insert into log (evento) value(CONCAT('se creo un evento en la tabla bodega: ', @dato)); end $$ ")
     //conexion.query("DELIMITER $$ CREATE trigger del_bodega_event AFTER delete on bodega for each row BEGIN SET @dato = old.articulo; insert into log (evento) value(CONCAT('se elimino un articulo en la tabla bodega: ', @dato)); end $$ ")
 
     //actualizaciones registradas en evento de persona
