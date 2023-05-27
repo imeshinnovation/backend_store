@@ -5,7 +5,7 @@ const env = process.env
 const enlace = mariadb.createPool({
     host: env.DBHOST,
     user: env.DBUSER,
-    password: env.DBPASS,
+    password: env.DBPASSWD,
     database: env.DATABASE
 
 })
