@@ -13,7 +13,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_DATABASE=curso
+      - MYSQL_DATABASE=store
       - MYSQL_USER=curso
       - MYSQL_PASSWORD=curso2023
       - MYSQL_ROOT_PASSWORD=curso2023
