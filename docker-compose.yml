@@ -1,0 +1,33 @@
+version: "3.2"
+services:
+  mysql:
+    image: mariadb:latest
+    container_name: mysql
+    hostname: mysql
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: DockerDBA
+    expose:
+      - 3306
+    port:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=curso
+      - MYSQL_USER=curso
+      - MYSQL_PASSWORD=curso2023
+      - MYSQL_ROOT_PASSWORD=curso2023
+    volumes:
+      - ./db:/var/lib/mysql:rw
+    networks:
+      backend:
+        ipv4_address: 172.16.200.2
+
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.200.0/27
