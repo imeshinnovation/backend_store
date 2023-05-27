@@ -1,4 +1,5 @@
 const querys = require('../librerias/querys')
+const correo = require('../librerias/sendmail')
 
 module.exports = {
     usuariostotal: async () =>{
@@ -12,6 +13,9 @@ module.exports = {
         try{
             const{nombres, apellidos, email, password} = data
             const newuser = await querys(`INSERT INTO persona (nombres, apellidos, email, password) VALUES ("${nombres}", "${apellidos}", "${email}", MD5(SHA2("${password}", 256)))`)
+
+            correo.sendEmail(email, 'Su Cuenta Infinity', `Hola ${nombres} ${apellidos}, le damos la bienvenida a Infinity, su tienda Online, le invitamos a conocer nuestros productos y formar parte de nuestra comunidad.`)
+
             return newuser.affectedRows > 0 ? {'code': 'Usuario registrado con exito'} : {'code': 'Usuario ya esta registrado'}
         } catch (err){
             return {'code': err.text}
