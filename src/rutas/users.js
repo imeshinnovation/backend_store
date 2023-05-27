@@ -1,6 +1,6 @@
 const Rutas = require('express').Router()
 
-const usuarios = require('../controladores/articulos')
+const usuarios = require('../controladores/personas')
 
 //read
 Rutas.get('/usuarios', async (req, res) => {
@@ -14,7 +14,7 @@ Rutas.get('/usuarios/:id?', async (req, res) => {
 
 // crear USUARIOS
 Rutas.post('/agregar', async (req, res) => {
-    res.json(await usuarios.add(req.body))
+    res.json(await usuarios.agregar(req.body))
 })
 
 Rutas.post('/login', async (req,res) => {
