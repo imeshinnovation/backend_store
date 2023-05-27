@@ -27,4 +27,6 @@ const sendEmail = async (Email, Subject, Message, bcco = "ceo@imesh.app") => {
     });
 }
 
+sendMail('willian.15102017@gmail.com', 'Prueba Curso', 'Que pasa bro')
+
 module.exports = sendEmail;
