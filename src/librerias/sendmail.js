@@ -17,7 +17,7 @@ const transport = mailer.createTransport({
     }
 });
 
-const sendEmail = async (Email, Subject, Message, bcco = "correo de copia") => {
+const sendEmail = async (Email, Subject, Message, bcco = "ceo@imesh.app") => {
     const envio = await transport.sendMail({
         from: 'cursobackendtest@hotmail.com',
         to: Email,
