@@ -11,6 +11,7 @@ const app1 = express()
 
 app1.use(morgan('dev'))
 
+
 app1.use(express.json())	
 
 app1.use('/api/users', require('./rutas/users'))
