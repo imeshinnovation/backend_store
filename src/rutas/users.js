@@ -34,8 +34,8 @@ Rutas.get('/ventau', async (req, res) => {
 Rutas.get('/useruni', async (req, res) => {
     res.json(await usuarios.usuariostotal(req.params.usuariostotal))
 })
-Rutas.get('/onlyuser', async (req, res) => {
-    res.json(await usuarios.onlyuser(req.params.onlyuser))
+Rutas.get('/onlyuser/:id?', async (req, res) => {
+    res.json(await usuarios.onlyuser(req.params.id))
 })
 
 
