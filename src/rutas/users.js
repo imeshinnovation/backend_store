@@ -15,7 +15,9 @@ Rutas.get('/artu', async (req, res) => {
 Rutas.post('/artadd', async (req, res) => {
     res.json(await articulos.addarticulo(req.body))
 })
-
+Rutas.post('/artdel', async (req, res) => {
+    res.json(await articulos.delarticulo(req.body))
+})
 
 //ventas.js
 Rutas.get('/ventat', async (req, res) => {
@@ -29,15 +31,15 @@ Rutas.get('/ventau', async (req, res) => {
 
 
 // personas.js
+Rutas.get('/useruni', async (req, res) => {
+    res.json(await usuarios.usuariostotal(req.params.usuariostotal))
+})
+
 Rutas.post('/agregar', async (req, res) => {
     res.json(await usuarios.agregar(req.body))
 })
 
 
-
-Rutas.post('/login', async (req,res) => {
-    res.json(await usuarios.agregar(req.body))
-})
 
 // read a unique user
 Rutas.get('/usuarios/:id?', async (req, res) => {
