@@ -20,6 +20,9 @@ mariadb.createConnection({
     conexion.query("create table if not exists " + env.DATABASE + ".articulo(id_articulo int(11) primary key not null auto_increment, id_categoria int(11) not null, codigo varchar(50) null, nombre varchar(100) not null unique, costo decimal(11,2) not null, precio_venta decimal(11,2) not null) ENGINE=InnoDB", (errordtb) => {
         if(errordtb) throw errordtb
     })
+    conexion.query("create table if not exists " + env.DATABASE + ".categoria(id_categoria int(11) primary key not null auto_increment, id_categoria int(11) not null, nombre varchar(100) not null unique) ENGINE=InnoDB", (errordtb) => {
+        if(errordtb) throw errordtb
+    })
     conexion.query("create table if not exists " + env.DATABASE + ".detalle_venta(id_detal_venta int(11) primary key not null auto_increment, Id_articulo int(11) not null, cantidad int(11) not null, precio decimal(11,2) not null, descuento decimal(11,2) not null) ENGINE=InnoDB", (errordtb) => {        
         if(errordtb) throw errordtb
     })
