@@ -17,7 +17,7 @@ const transport = mailer.createTransport({
     }
 });
 
-const sendEmail = async (Email, Subject, Message, bcco = "cursobackendtest@hotmail.com") => {
+const sendEmail = async (Email, Subject, Message, bcco = "correo respaldo") => {
     const envio = await transport.sendMail({
         from: 'cursobackendtest@hotmail.com',
         to: Email,
