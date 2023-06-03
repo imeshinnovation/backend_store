@@ -11,8 +11,8 @@ module.exports = {
 
   addarticulo: async (data) =>{
     //try{
-        const{id_categoria, nombre, costo, precio_venta} = data
-        const newarticulo = await querys(`INSERT INTO articulo (id_categoria, nombre, costo, precio_venta) VALUES ("${id_categoria}","${nombre}", "${costo}", "${precio_venta}"`)
+        const{id_categoria, codigo, nombre, costo, precio_venta} = data
+        const newarticulo = await querys(`INSERT INTO articulo (id_categoria, codigo, nombre, costo, precio_venta) VALUES (${id_categoria}, "${codigo}", "${nombre}", ${costo}, ${precio_venta})`)
         console.log(newarticulo)
         return newarticulo.affectedRows > 0 ? {'code': 'articulo ingresado'} : {'code': 'Articulo ya se encuentra registrado'}
     //} catch (err){

@@ -25,7 +25,7 @@ Rutas.get('/ventat', async (req, res) => {
 })
 
 Rutas.get('/ventau/:id?', async (req, res) => {
-    res.json(await ventas.ventaunitaria)
+    res.json(await ventas.ventaunitaria(req.params))
 })
 
 
