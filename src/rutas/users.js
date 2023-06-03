@@ -24,7 +24,7 @@ Rutas.get('/ventat', async (req, res) => {
     res.json(await ventas.ventatotal())
 })
 
-Rutas.get('/ventau', async (req, res) => {
+Rutas.get('/ventau/:id?', async (req, res) => {
     res.json(await ventas.ventaunitaria)
 })
 
