@@ -8,8 +8,8 @@ const articulos = require('../controladores/articulos')
 Rutas.get('/artt', async (req, res) => {
     res.json(await articulos.arttototal(req.params.arttototal))
 })
-Rutas.get('/artu', async (req, res) => {
-    res.json(await articulos.artunitario(req.params.artunitario))
+Rutas.get('/artu/:id?', async (req, res) => {
+    res.json(await articulos.artunitario(req.params.id))
 })  
 
 Rutas.post('/artadd', async (req, res) => {
