@@ -23,11 +23,9 @@ Rutas.post('/artdel', async (req, res) => {
 Rutas.get('/ventat', async (req, res) => {
     res.json(await ventas.ventatotal())
 })
-
 Rutas.get('/ventau/:id?', async (req, res) => {
     res.json(await ventas.ventaunitaria(req.params))
 })
-
 
 
 // personas.js
