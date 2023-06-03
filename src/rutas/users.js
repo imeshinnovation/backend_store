@@ -36,7 +36,6 @@ Rutas.get('/onlyuser/:id?', async (req, res) => {
     res.json(await usuarios.onlyuser(req.params.id))
 })
 
-
 Rutas.post('/agregar', async (req, res) => {
     res.json(await usuarios.agregar(req.body))
 })
