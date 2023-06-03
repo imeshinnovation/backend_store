@@ -34,16 +34,23 @@ Rutas.get('/ventau', async (req, res) => {
 Rutas.get('/useruni', async (req, res) => {
     res.json(await usuarios.usuariostotal(req.params.usuariostotal))
 })
+Rutas.get('/onlyuser', async (req, res) => {
+    res.json(await usuarios.onlyuser(req.params.onlyuser))
+})
+
 
 Rutas.post('/agregar', async (req, res) => {
     res.json(await usuarios.agregar(req.body))
+})
+Rutas.post('/login', async (req, res) => {
+    res.json(await usuarios.login(req.body))
 })
 
 
 
 // read a unique user
-Rutas.get('/usuarios/:id?', async (req, res) => {
-    res.json(await usuarios.unicousuario(req.params.id))
-})
+//Rutas.get('/usuarios/:id?', async (req, res) => {
+//    res.json(await usuarios.unicousuario(req.params.id))
+//})
 
 module.exports = Rutas
