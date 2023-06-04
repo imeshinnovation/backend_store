@@ -15,7 +15,7 @@ Rutas.get('/artu/:id?', async (req, res) => {
 Rutas.post('/artadd', async (req, res) => {
     res.json(await articulos.addarticulo(req.body))
 })
-Rutas.post('/artdel', async (req, res) => {
+Rutas.delete('/artdel', async (req, res) => {
     res.json(await articulos.delarticulo(req.body))
 })
 
@@ -24,7 +24,7 @@ Rutas.get('/ventat', async (req, res) => {
     res.json(await ventas.ventatotal())
 })
 Rutas.get('/ventau/:id?', async (req, res) => {
-    res.json(await ventas.ventaunitaria(req.params))
+    res.json(await ventas.ventaunitaria(req.params.id))
 })
 
 

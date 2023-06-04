@@ -5,7 +5,7 @@ module.exports = {
     return await querys("SELECT * FROM detalle_venta")
   },
 
-  ventaunitaria:  async () =>{
+  ventaunitaria:  async (id_detal_venta) =>{
     return await querys("SELECT * FROM detalle_venta WHERE id_detal_venta=" + id_detal_venta)
   },
 
