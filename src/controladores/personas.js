@@ -28,7 +28,7 @@ module.exports = {
             const {email, password} = data
             const prevpass = await querys(`SELECT MD5(SHA2("${password}", 256)) AS PASSWD`)
             const validacion = await querys(`SELECT * FROM persona WHERE email="${email}" AND password="${prevpass[0].PASSWD}"`)
-            return validacion.length > 0 ? validacion[0] : {'code': 'crendenciales Incorrectas'}
+            return validacion.length > 0 ? validacion[0] : {'si eres we' : 'crendenciales Incorrectas'}
         }catch (err){
             return {'code': 'Error de MySQL' + err}
         }
