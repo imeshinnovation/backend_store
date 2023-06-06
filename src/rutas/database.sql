@@ -1,34 +1,9 @@
-DROP TRIGGER IF EXISTS `NuevoPrecioVenta`;
-DELIMITER //
-CREATE TRIGGER `NuevoPrecioVenta`
-BEFORE INSERT ON `Productos`
-FOR EACH ROW
-BEGIN
-    SET @PrecioVenta = (((NEW.Costo * NEW.Margen ) / 100 ) + NEW.Costo);
-    SET NEW.Precio_Venta = @PrecioVenta;
-END//
-DELIMITER ;
-
-
-DROP TRIGGER IF EXISTS `ACTPrecioVenta`;
-DELIMITER //
-CREATE TRIGGER `ACTPrecioVenta`
-BEFORE UPDATE ON `Productos`
-FOR EACH ROW
-BEGIN
-    SET @PrecioVenta = (((NEW.Costo * OLD.Margen ) / 100 ) + NEW.Costo);
-    SET NEW.Precio_Venta = @PrecioVenta;
-END//
-DELIMITER ;
-
-
-DROP TRIGGER IF EXISTS `NuevoPrecioVentaAfter`;
+DROP TRIGGER IF EXISTS `NuevoProducto`;
 DELIMITER &&
-CREATE TRIGGER `NuevoPrecioVentaAfter`
+CREATE TRIGGER `NuevoProducto`
 AFTER INSERT ON `articulo`
 FOR EACH ROW
 BEGIN
-
   INSERT INTO `log` (id_evento, Evento) VALUES (NEW.id, CONCAT('Se Creo el Producto: ', NEW.nombre));
 END&&
 DELIMITER ;
@@ -39,7 +14,6 @@ CREATE TRIGGER `NuevoUser`
 AFTER INSERT ON `persona`
 FOR EACH ROW
 BEGIN
-
   INSERT INTO `log` (id_evento, Evento) VALUES (NEW.id_user, CONCAT('Se Creo el Usuario: ', NEW.nombres));
 END&&
 DELIMITER ;
@@ -48,11 +22,10 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `Actu_inventario`;
 DELIMITER &&
 CREATE TRIGGER `Actu_inventario`
-AFTER UPDATE ON `Inventario`
+AFTER UPDATE ON `bodega`
 FOR EACH ROW
 BEGIN
-
-  INSERT INTO `Auditoria` (id_evento, Evento) VALUES (NEW.id, CONCAT('Se Actualizo el Producto: ', NEW.id_producto, ' Cantidad ', NEW.Cantidad));
+  INSERT INTO `log` (id_evento, Evento) VALUES (NEW.id, CONCAT('Se Actualizo el Producto: ', NEW.id_producto, ' Cantidad ', NEW.Cantidad));
 END&&
 DELIMITER ;
 
