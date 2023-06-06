@@ -1,5 +1,4 @@
 const Rutas = require('express').Router()
-
 const usuarios = require('../controladores/personas')
 const ventas = require('../controladores/ventas')
 const articulos = require('../controladores/articulos')
