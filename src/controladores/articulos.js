@@ -16,10 +16,10 @@ module.exports = {
         console.log(newarticulo)
         return newarticulo.affectedRows > 0 ? {'code': 'articulo ingresado'} : {'code': 'Articulo ya se encuentra registrado'}
     } catch (err){
-     console.log(err.text)  
-     return {'code': err}
+     return {'code': err.text}
     }
 },
+
   delarticulo: async (data) =>{
   try{
       const{id_articulo, nombre} = data
