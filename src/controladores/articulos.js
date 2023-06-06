@@ -22,8 +22,8 @@ module.exports = {
 },
   delarticulo: async (data) =>{
   try{
-      const{id_articulo, nombre} = data
-      const oldarticulo = await querys(`DELETE FROM articulo WHERE id_articulo=(${id_articulo})`)
+      const{id, nombre} = data
+      const oldarticulo = await querys(`DELETE FROM articulo WHERE id=(${id})`)
       return oldarticulo.affectedRows > 0 ? {'code': 'articulo elimado con exito'} : {'code': 'Articulo no encontrado'}
   } catch (err){
       return {'code': err.text}

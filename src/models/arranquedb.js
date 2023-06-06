@@ -11,13 +11,13 @@ mariadb.createConnection({
     conexion.query("CREATE DATABASE IF NOT EXISTS " + env.DATABASE, (errordb) => {
         if(errordb) throw errordb
     })
-    conexion.query("CREATE TABLE IF NOT EXISTS " + env.DATABASE + ".persona (id INT(11) PRIMARY KEY AUTO_INCREMENT, tipo_persona varchar(20) not null, nombres VARCHAR(64) not null, apellidos VARCHAR(64) not null, tipo_documento varchar(20) not null, num_documento varchar(20) not null, direccion varchar(70) not null, telefono varchar(20) not null, email VARCHAR(128) not null UNIQUE, password VARCHAR(128) not null ) ENGINE=InnoDB ", (errordtb) => {
+    conexion.query("CREATE TABLE IF NOT EXISTS " + env.DATABASE + ".persona (id_user INT(11) PRIMARY KEY AUTO_INCREMENT, tipo_persona varchar(20) not null, nombres VARCHAR(64) not null, apellidos VARCHAR(64) not null, tipo_documento varchar(20) not null, num_documento varchar(20) not null, direccion varchar(70) not null, telefono varchar(20) not null, email VARCHAR(128) not null UNIQUE, password VARCHAR(128) not null ) ENGINE=InnoDB ", (errordtb) => {
         if(errordtb) throw errordtb
     })
     conexion.query("create table if not exists " + env.DATABASE + ".log(id int(11) primary key not null auto_increment, id_evento int(11) not null, evento varchar(64) not null, create_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB", (error) => {        
         if(error) throw error
     })
-    conexion.query("create table if not exists " + env.DATABASE + ".articulo(id_articulo int(11) primary key not null auto_increment, id_categoria int(11) not null, codigo varchar(50) null, nombre varchar(100) not null unique, costo decimal(11,2) not null, precio_venta decimal(11,2) not null) ENGINE=InnoDB", (errordtb) => {
+    conexion.query("create table if not exists " + env.DATABASE + ".articulo(id int(11) primary key not null auto_increment, id_categoria int(11) not null, codigo varchar(50) null, nombre varchar(100) not null unique, costo decimal(11,2) not null, precio_venta decimal(11,2) not null) ENGINE=InnoDB", (errordtb) => {
         if(errordtb) throw errordtb
     })
     conexion.query("create table if not exists " + env.DATABASE + ".categoria(id_categoria int(11) primary key not null auto_increment, nombre varchar(100) not null unique) ENGINE=InnoDB", (errordtb) => {
@@ -40,8 +40,14 @@ mariadb.createConnection({
 
     //intento de margen de ganancia
     //conexion.query("DELIMITER $$ CREATE trigger porcentaje_ganancia BEFORE insert on articulos for each row BEGIN SET @costo_venta = (((NEW.costo * NEW.ganancia) / 100) + NEW.costo) SET NEW.costo_venta = @costovento end $$")
+    
+    //const modifyTriggerQuery = `
+    //DROP TRIGGER IF EXISTS `NuevoPrecioVentaAfter`  DELIMITER && CREATE TRIGGER  `NuevoPrecioVentaAfter` AFTER INSERT ON `articulo` FOR EACH ROW BEGIN INSERT INTO `log`  (id_evento, Evento) VALUES (NEW.id, CONCAT('Se Creo el Producto: ', NEW.Nombre_Producto)); END&& DELIMITER ;
+//`;
+
+    //conexion.query(`DROP TRIGGER IF EXISTS `/"NuevoPrecioVentaAfter"/`  DELIMITER && CREATE TRIGGER  `/"NuevoPrecioVentaAfter"/` AFTER INSERT ON `/"articulo"/` FOR EACH ROW BEGIN INSERT INTO `/"log"/` (id_evento, Evento) VALUES (NEW.id, CONCAT('Se Creo el Producto: ', NEW.Nombre_Producto)); END&& DELIMITER ;`)
 
 }).catch((error) => {
-    console.log('mira, aqui la regaste -> ', error.code)
+    console.log('mira, aqui la regaste -> ', error)
 })
 
