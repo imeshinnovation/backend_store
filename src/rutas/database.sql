@@ -4,9 +4,10 @@ CREATE TRIGGER `NuevoProducto`
 AFTER INSERT ON `articulo`
 FOR EACH ROW
 BEGIN
-  INSERT INTO `log` (id_evento, Evento) VALUES (NEW.id, CONCAT('Se Creo el Producto: ', NEW.nombre));
+  INSERT INTO `log` (id_evento, evento) VALUES (NEW.id, CONCAT('Se Creo el Producto: ', NEW.nombre));
 END&&
 DELIMITER ;
+
 
 DROP TRIGGER IF EXISTS `NuevoUser`;
 DELIMITER &&
@@ -14,7 +15,7 @@ CREATE TRIGGER `NuevoUser`
 AFTER INSERT ON `persona`
 FOR EACH ROW
 BEGIN
-  INSERT INTO `log` (id_evento, Evento) VALUES (NEW.id_user, CONCAT('Se Creo el Usuario: ', NEW.nombres));
+  INSERT INTO `log` (id_evento, evento) VALUES (NEW.id_user, CONCAT('Se Creo el Usuario: ', NEW.nombres));
 END&&
 DELIMITER ;
 
@@ -25,31 +26,30 @@ CREATE TRIGGER `Actu_inventario`
 AFTER UPDATE ON `bodega`
 FOR EACH ROW
 BEGIN
-  INSERT INTO `log` (id_evento, Evento) VALUES (NEW.id, CONCAT('Se Actualizo el Producto: ', NEW.id_producto, ' Cantidad ', NEW.Cantidad));
+  INSERT INTO `log` (id_evento, evento) VALUES (NEW.id, CONCAT('Se Actualizo el articulo: ', NEW.id_articulo, ' Cantidad ', NEW.cantidad));
 END&&
 DELIMITER ;
 
-DROP TRIGGER IF EXISTS `UpdatePrecioVenta`;
+DROP TRIGGER IF EXISTS `UpdateProduct`;
 DELIMITER $$
-CREATE TRIGGER `UpdatePrecioVenta`
-BEFORE UPDATE ON `Productos`
+CREATE TRIGGER `UpdateProduct`
+BEFORE UPDATE ON `articulo`
 FOR EACH ROW
 BEGIN
-   
-   INSERT INTO `Auditoria` (id_evento, Evento) VALUES (OLD.id, CONCAT('Se Actualizo el Producto: ', OLD.Nombre_Producto));
+   INSERT INTO `log` (id_evento, evento) VALUES (OLD.id, CONCAT('Se Actualizo el articulo: ', OLD.nombre));
 END$$
 DELIMITER ;
 
 
-DROP TRIGGER IF EXISTS `NuevoInventario`;
+DROP TRIGGER IF EXISTS `NuevoBodega`;
 DELIMITER !!
-CREATE TRIGGER `NuevoInventario`
+CREATE TRIGGER `NuevoBodega`
 AFTER INSERT ON `Ventas`
 FOR EACH ROW
 BEGIN
-    UPDATE Inventario
-    SET Inventario.Cantidad = Inventario.Cantidad - NEW.Cantidad1
-    WHERE Inventario.id_producto = NEW.id_prod;
-    INSERT INTO `Auditoria` (id_evento, Evento) VALUES (NEW.id, CONCAT('Se vendio el Producto: ', NEW.id_prod,' Cantidad: ',NEW.Cantidad1));
+    UPDATE bodega
+    SET bodega.cantidad = bodega.cantidad - NEW.cantidad1
+    WHERE bodega.id_articulo = NEW.id_prod;
+    INSERT INTO `log` (id_evento, evento) VALUES (NEW.id, CONCAT('Se vendio el articulo: ', NEW.id_prod,' Cantidad: ',NEW.cantidad1));
 END!!
 DELIMITER ;
