@@ -51,7 +51,7 @@ FOR EACH ROW
 BEGIN
     UPDATE bodega
     SET bodega.cantidad = bodega.cantidad - NEW.cantidadV
-    WHERE bodega.id_articulo = NEW.id_articulo;
+    WHERE bodega.id_articulo = NEW.Id_articulo;
     INSERT INTO `log` (id_evento, evento) VALUES (NEW.id, CONCAT('Se vendio el articulo: ', NEW.id_venta,' Cantidad: ',NEW.cantidadV));
 END!!
 DELIMITER ;
