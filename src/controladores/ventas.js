@@ -10,8 +10,15 @@ module.exports = {
     
   },
 
-  ventaunitaria:  async (id_detal_venta) =>{
-    return await querys("SELECT * FROM detalle_venta WHERE id_detal_venta=" + id_detal_venta)
+  ventaunitaria:  async (detalle_venta) => {
+    try{
+      const{id_detal_venta, Id_articulo, cantidad, precio, descuento} = detalle_venta
+      const detailventa = await querys(`INSERT INTO articulo (id_detal_venta, Id_articulo, cantidad, precio, descuento ) VALUES (${id_detal_venta}, ${Id_articulo}, ${cantidad}, ${precio}, ${descuento})`)
+      console.log(detailventa)
+      return detailventa.affectedRows > 0 ? {'code': 'venta OK'} : {'code': 'No se completo la venta'}
+  } catch (err){
+   return {'code': err.text}
+  }
   },
 
   
