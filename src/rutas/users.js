@@ -25,6 +25,9 @@ Rutas.get('/ventat', async (req, res) => {
 Rutas.get('/ventau/:id?', async (req, res) => {
     res.json(await ventas.ventaunitaria(req.params.id))
 })
+Rutas.post('/venta', async (req, res) => {
+    res.json(await ventas.bla(req.body))
+})
 
 
 // personas.js

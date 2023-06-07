@@ -1,3 +1,4 @@
+//inserta en auditoria el registro de articulo
 DROP TRIGGER IF EXISTS `NuevoProducto`;
 DELIMITER &&
 CREATE TRIGGER `NuevoProducto`
@@ -8,7 +9,7 @@ BEGIN
 END&&
 DELIMITER ;
 
-
+//inserta en auditoria el registro de persona
 DROP TRIGGER IF EXISTS `NuevoUser`;
 DELIMITER &&
 CREATE TRIGGER `NuevoUser`
@@ -19,7 +20,7 @@ BEGIN
 END&&
 DELIMITER ;
 
-
+//inserta en auditoria el registro de bodega
 DROP TRIGGER IF EXISTS `Actu_inventario`;
 DELIMITER &&
 CREATE TRIGGER `Actu_inventario`
@@ -29,6 +30,7 @@ BEGIN
   INSERT INTO `log` (id_evento, evento) VALUES (NEW.id, CONCAT('Se Actualizo el articulo: ', NEW.id_articulo, ' Cantidad ', NEW.cantidad));
 END&&
 DELIMITER ;
+
 
 DROP TRIGGER IF EXISTS `UpdateProduct`;
 DELIMITER $$
@@ -44,12 +46,12 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `NuevoBodega`;
 DELIMITER !!
 CREATE TRIGGER `NuevoBodega`
-AFTER INSERT ON `Ventas`
+AFTER INSERT ON `detalle_ventas`
 FOR EACH ROW
 BEGIN
     UPDATE bodega
-    SET bodega.cantidad = bodega.cantidad - NEW.cantidad1
-    WHERE bodega.id_articulo = NEW.id_prod;
-    INSERT INTO `log` (id_evento, evento) VALUES (NEW.id, CONCAT('Se vendio el articulo: ', NEW.id_prod,' Cantidad: ',NEW.cantidad1));
+    SET bodega.cantidad = bodega.cantidad - NEW.cantidadV
+    WHERE bodega.id_articulo = NEW.id_articulo;
+    INSERT INTO `log` (id_evento, evento) VALUES (NEW.id, CONCAT('Se vendio el articulo: ', NEW.id_venta,' Cantidad: ',NEW.cantidadV));
 END!!
 DELIMITER ;
