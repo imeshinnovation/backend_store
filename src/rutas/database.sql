@@ -31,7 +31,7 @@ BEGIN
 END&&
 DELIMITER ;
 
-
+//inserta en log las actualizaciones de articulo
 DROP TRIGGER IF EXISTS `UpdateProduct`;
 DELIMITER $$
 CREATE TRIGGER `UpdateProduct`
@@ -42,7 +42,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+// despues de insertar en detalle_venta, actualiza los datos en bodega
 DROP TRIGGER IF EXISTS `NuevoBodega`;
 DELIMITER !!
 CREATE TRIGGER `NuevoBodega`
