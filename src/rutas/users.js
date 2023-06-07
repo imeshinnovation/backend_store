@@ -5,7 +5,7 @@ const articulos = require('../controladores/articulos')
 
 //articulos.js
 Rutas.get('/artt', async (req, res) => {
-    res.json(await articulos.arttototal(req.params.arttototal))
+    res.json(await articulos.arttototal())
 })
 Rutas.get('/artu/:id?', async (req, res) => {
     res.json(await articulos.artunitario(req.params.id))
@@ -22,12 +22,12 @@ Rutas.delete('/artdel', async (req, res) => {
 Rutas.get('/ventat', async (req, res) => {
     res.json(await ventas.ventatotal())
 })
-Rutas.get('/ventau/:id?', async (req, res) => {
-    res.json(await ventas.ventaunitaria(req.params.id))
+Rutas.post('/ventau', async (req, res) => {
+    res.json(await ventas.ventaunitaria(req.body))
 })
-Rutas.post('/venta', async (req, res) => {
-    res.json(await ventas.bla(req.body))
-})
+//Rutas.post('/venta', async (req, res) => {
+//    res.json(await ventas.bla(req.body))
+//})
 
 
 // personas.js

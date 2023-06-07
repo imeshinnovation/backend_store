@@ -10,14 +10,14 @@ module.exports = {
     
   },
 
-  ventaunitaria:  async (detalle_venta) => {
+  ventaunitaria:  async (data) => {
     try{
-      const{Id_articulo, cantidad, precio, descuento} = detalle_venta
-      const detailventa = await querys(`INSERT INTO articulo (Id_articulo, cantidad, precio, descuento ) VALUES (${Id_articulo}, ${cantidad}, ${precio}, ${descuento})`)
+      const{id_articulo, cantidad1, precio, descuento} = data
+      const detailventa = await querys(`INSERT INTO detalle_venta (id_articulo, cantidad1, precio, descuento ) VALUES (${id_articulo}, ${cantidad1}, ${precio}, ${descuento})`)
       console.log(detailventa)
       return detailventa.affectedRows > 0 ? {'code': 'venta OK'} : {'code': 'No se completo la venta'}
   } catch (err){
-   return {'code': err.text}
+   return {'code': err}
   }
   },
 

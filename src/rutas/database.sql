@@ -46,7 +46,7 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `NuevoBodega`;
 DELIMITER !!
 CREATE TRIGGER `NuevoBodega`
-AFTER INSERT ON `detalle_ventas`
+AFTER INSERT ON `detalle_venta`
 FOR EACH ROW
 BEGIN
     UPDATE bodega
