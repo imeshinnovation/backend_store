@@ -14,4 +14,6 @@ module.exports = {
     return await querys("SELECT * FROM detalle_venta WHERE id_detal_venta=" + id_detal_venta)
   },
 
+  
+
 }
