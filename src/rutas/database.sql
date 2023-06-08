@@ -56,12 +56,13 @@ BEGIN
 END!!
 DELIMITER ;
 
+
 DROP TRIGGER IF EXISTS `NuevoProductoBodega`;
 DELIMITER &&
 CREATE TRIGGER `NuevoProductoBodega`
 AFTER INSERT ON `articulo`
 FOR EACH ROW
 BEGIN
-  INSERT INTO `bodega` (id_articulo, nombre) VALUES (NEW.id, CONCAT('Se Creo el Producto: ', NEW.nombre));
+  INSERT INTO `bodega` (id_articulo) VALUES (OLD.id);
 END&&
 DELIMITER ;

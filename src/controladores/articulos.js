@@ -11,22 +11,22 @@ module.exports = {
 
   addarticulo: async (data) =>{
     try{
-        const{condigo, nombre,  costo, precio_venta} = data
-        const newarticulo = await querys(`INSERT INTO articulo (codigo, nombre,  costo, precio_venta) VALUES ("${condigo}", "${nombre}",  ${costo}, ${precio_venta})`)
+        const{codigo, nombre,  costo, precio_venta} = data
+        const newarticulo = await querys(`INSERT INTO articulo (codigo, nombre,  costo, precio_venta) VALUES (${codigo}, "${nombre}",  ${costo}, ${precio_venta})`)
         console.log(newarticulo)
         return newarticulo.affectedRows > 0 ? {'code': 'articulo ingresado'} : {'code': 'Articulo ya se encuentra registrado'}
     } catch (err){
      return {'code': err}
     }
-},
+  },
 
   delarticulo: async (data) =>{
   try{
-      const{id, nombre} = data
-      const oldarticulo = await querys(`DELETE FROM articulo WHERE id=(${id})`)
+      const{id_articulo} = data
+      const oldarticulo = await querys(`DELETE FROM articulo WHERE id_articulo= (${id_articulo}) `)
       return oldarticulo.affectedRows > 0 ? {'code': 'articulo elimado con exito'} : {'code': 'Articulo no encontrado'}
   } catch (err){
-      return {'code': err.text}
+      return {'code': err}
   }
 },
 }
