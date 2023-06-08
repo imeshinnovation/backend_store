@@ -6,6 +6,10 @@ module.exports = {
     return await querys("SELECT * FROM bodega")
   },
 
+  bogunitario:  async (id_articulo) =>{
+    return await querys("SELECT * FROM articulo WHERE id_articulo=" + id_articulo)
+  },
+
   addbodega: async (data) =>{
     try{
         const{id_articulo, cantidad} = data
