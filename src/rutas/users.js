@@ -26,9 +26,6 @@ Rutas.get('/ventat', async (req, res) => {
 Rutas.post('/ventau', async (req, res) => {
     res.json(await ventas.ventaunitaria(req.body))
 })
-//Rutas.post('/venta', async (req, res) => {
-//    res.json(await ventas.bla(req.body))
-//})
 
 
 // personas.js
@@ -47,10 +44,13 @@ Rutas.post('/login', async (req, res) => {
 })
 
 // Bodega
-Rutas.get('/bodega', async (req, res) =>{
+Rutas.put('/bodega', async (req, res) =>{
     res.json(await usuarios.bodega(req.body))
 })
 
+Rutas.get('/bodega_art', async (req, res) => {
+    res.json(await bodega.inventario(req.params.inventario))
+})
 
 
 // read a unique user
