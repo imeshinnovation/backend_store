@@ -2,6 +2,10 @@ const querys = require('../librerias/querys')
 
 module.exports = {
 
+  bogtotal:  async () =>{
+    return await querys("SELECT * FROM bodega")
+  },
+
   addbodega: async (data) =>{
     try{
         const{id_articulo, cantidad} = data
