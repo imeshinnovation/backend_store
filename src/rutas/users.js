@@ -2,6 +2,7 @@ const Rutas = require('express').Router()
 const usuarios = require('../controladores/personas')
 const ventas = require('../controladores/ventas')
 const articulos = require('../controladores/articulos')
+const bodega = require('../controladores/bodega')
 
 //articulos.js
 Rutas.get('/artt', async (req, res) => {
@@ -43,6 +44,11 @@ Rutas.post('/agregar', async (req, res) => {
 })
 Rutas.post('/login', async (req, res) => {
     res.json(await usuarios.login(req.body))
+})
+
+// Bodega
+Rutas.get('/bodega', async (req, res) =>{
+    res.json(await usuarios.bodega(req.body))
 })
 
 
