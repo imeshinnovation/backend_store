@@ -21,8 +21,16 @@ module.exports = {
     }
   },
 
-  bodega: async (cantidad, id_articulo) =>{
-    return await querys("UPDATE bodega SET cantidad=" + cantidad, "WHERE id=" + id_articulo )
+  bogupdate: async (data) =>{
+    //return await querys(`UPDATE bodega SET cantidad=(${cantidad}) , WHERE id_articulo=(${id_articulo})`)
+    try{
+      const{cantidad, id_articulo } = data
+      const algo = await querys(`UPDATE bodega SET cantidad=(${cantidad}) WHERE id_articulo=(${id_articulo})`)
+      console.log(algo)
+      return algo.affectedRows > 0 ? {'code': 'articulo actualizado'} : {'code': 'papi revisa tu codigo, eso no funciona asi'}
+    }catch (err){
+    return {'code': err}
+    }
   },
 }
 

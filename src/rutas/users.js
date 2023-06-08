@@ -44,18 +44,20 @@ Rutas.post('/login', async (req, res) => {
 })
 
 // Bodega
-Rutas.put('/bodega', async (req, res) =>{
-    res.json(await usuarios.bodega(req.body))
+Rutas.put('/bogupdate', async (req, res) =>{
+    res.json(await bodega.bogupdate(req.body))
 })
 
-Rutas.get('/bodega_art', async (req, res) => {
-    res.json(await bodega.inventario(req.params.inventario))
+Rutas.post('/addbodega', async (req, res) => {
+    res.json(await bodega.addbodega(req.body))
 })
 
+Rutas.get('/bogtotal', async (req, res) => {
+    res.json(await bodega.bogtotal(req.params.bogtotal))
+})
+Rutas.get('/bogunitario/:id?', async (req, res) => {
+    res.json(await bodega.bogunitario(req.params.id))
+})
 
-// read a unique user
-//Rutas.get('/usuarios/:id?', async (req, res) => {
-//    res.json(await usuarios.unicousuario(req.params.id))
-//})
 
 module.exports = Rutas
