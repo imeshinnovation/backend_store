@@ -4,13 +4,16 @@ const sendEmail = require('../librerias/sendmail')
 module.exports = {
   ventatotal:  async () =>{
     try {
+      const comprador = await querys ('SELECT * FROM detalle_venta')
       
-      const{nombres, apellidos, id_articulo} = data
-      await sendEmail(`Hola ${nombres} ${apellidos}, compraste ${id_articulo}`)
+      //const {nombres, apellidos, id_articulo} = data
+      //await sendEmail('willian.15102017@gmail.com', 'prueba', `Hola ${nombres} ${apellidos}, compraste `)
+      console.log(comprador)
+      return comprador
 
-      return await querys("SELECT * FROM detalle_venta")
-    } catch {
-
+      //return await querys("SELECT * FROM detalle_venta")
+    } catch (err) {
+      return {'code' : err}
     }
     
     
