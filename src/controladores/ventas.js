@@ -3,10 +3,16 @@ const sendEmail = require('../librerias/sendmail')
 
 module.exports = {
   ventatotal:  async () =>{
-    return await querys("SELECT * FROM detalle_venta")
+    try {
+      
+      const{nombres, apellidos, id_articulo} = data
+      await sendEmail(`Hola ${nombres} ${apellidos}, compraste ${id_articulo}`)
 
-    const{tipo_persona, nombres, apellidos, tipo_documento, num_documento, direccion, telefono, email, password} = data
-    // await sendEmail(email, 'Su Cuenta Infinity', `Hola ${nombres} ${apellidos}, le damos la bienvenida a Infinity, su tienda Online, le invitamos a conocer nuestros productos y formar parte de nuestra comunidad.`)
+      return await querys("SELECT * FROM detalle_venta")
+    } catch {
+
+    }
+    
     
   },
 
