@@ -2,13 +2,14 @@ const querys = require('../librerias/querys')
 const sendEmail = require('../librerias/sendmail')
 
 module.exports = {
-  ventatotal:  async () =>{
+  ventatotal:  async (id_user) =>{
     try {
-      const comprador = await querys ('SELECT * FROM detalle_venta')
-      
+      const detalle_venta = await querys(`SELECT * FROM detalle_venta WHERE id_user=${id_user}`)
+      const datos_usuario = await querys(`SELECT * FROM persona WHERE id_user=${id_user}` )
+      console.log(`${datos_usuario[0].email}`)
+
       //const {nombres, apellidos, id_articulo} = data
-      //await sendEmail('willian.15102017@gmail.com', 'prueba', `Hola ${nombres} ${apellidos}, compraste `)
-      console.log(comprador)
+      await sendEmail(`${datos_usuario[0].email}`, 'prueba', `Hola ${datos_usuario[0].nombres}, compraste `)
       return comprador
 
       //return await querys("SELECT * FROM detalle_venta")

@@ -20,8 +20,8 @@ Rutas.delete('/artdel', async (req, res) => {
 })
 
 //ventas.js
-Rutas.get('/ventat', async (req, res) => {
-    res.json(await ventas.ventatotal(req.params.ventatotal))
+Rutas.get('/ventat/:id?', async (req, res) => {
+    res.json(await ventas.ventatotal(req.params.id))
 })
 Rutas.post('/ventau', async (req, res) => {
     res.json(await ventas.ventaunitaria(req.body))
