@@ -81,10 +81,15 @@ mariadb.createConnection({
         UPDATE ${env.DATABASE}.bodega
         SET bodega.cantidad = bodega.cantidad - NEW.cantidad1
         WHERE bodega.id_articulo = NEW.id_articulo;
-        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (NEW.id_articulo, CONCAT('Se vendio el articulo: ', NEW.id_detal_venta,' Cantidad: ',NEW.cantidad1));
+        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (NEW.id_articulo,  CONCAT('Se vendio el articulo: ', NEW.id_articulo,' Cantidad: ',NEW.cantidad1));
     END;`, (errortri) => {
         if(errortri) throw errortri
     })
+
+    /*
+    HACE FALTA, LAS RUTAS DEL PENÙLTIMO DISPARADORES "UpdateProduct",
+    REVISAR EL CARRITO DE COMPRAS SI HAY QUE CREAR UNA TABLA EXTRA
+    */
 
 
 
