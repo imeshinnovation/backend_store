@@ -26,7 +26,8 @@ mariadb.createConnection({
     conexion.query("create table if not exists " + env.DATABASE + ".bodega(id_bodega int(11) primary key not null auto_increment, id_articulo int(11) not null, cantidad int(11) null) ENGINE=InnoDB", (errordtb) => {        
         if(errordtb) throw errordtb
     })
-    
+
+    //DISPARADORES
     conexion.query(`
     CREATE TRIGGER IF NOT EXISTS ${env.DATABASE}.NuevoProducto
     AFTER INSERT ON ${env.DATABASE}.articulo
@@ -36,6 +37,56 @@ mariadb.createConnection({
     END;`, (errortri) => {
         if(errortri) throw errortri
     })
+    conexion.query(`
+    CREATE TRIGGER IF NOT EXISTS ${env.DATABASE}.NuevoUser
+    AFTER INSERT ON ${env.DATABASE}.persona
+    FOR EACH ROW
+    BEGIN
+    INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (NEW.id_user, CONCAT('Se Creo el Usuario: ', NEW.nombres));
+    END;`, (errortri) => {
+        if(errortri) throw errortri
+    })
+    conexion.query(`
+    CREATE TRIGGER IF NOT EXISTS ${env.DATABASE}.Actu_inventario
+    AFTER UPDATE ON ${env.DATABASE}.bodega
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (NEW.id_articulo, CONCAT('Se Actualizo el articulo ', NEW.id_articulo, ' Cantidad ', NEW.cantidad));
+    END;`, (errortri) => {
+        if(errortri) throw errortri
+    })
+    conexion.query(`
+    CREATE TRIGGER IF NOT EXISTS ${env.DATABASE}.NuevoProductoBodega
+    AFTER INSERT ON ${env.DATABASE}.articulo
+    FOR EACH ROW
+    BEGIN
+    INSERT INTO ${env.DATABASE}.bodega (id_articulo) VALUES (NEW.id_articulo);
+    END;`, (errortri) => {
+        if(errortri) throw errortri
+    })
+    conexion.query(`
+    CREATE TRIGGER IF NOT EXISTS ${env.DATABASE}.UpdateProduct
+    BEFORE UPDATE ON ${env.DATABASE}.articulo
+    FOR EACH ROW    
+    BEGIN
+        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (OLD.id_articulo, CONCAT('Se Actualizo el articulo: ', OLD.nombre));
+    END;`, (errortri) => {
+        if(errortri) throw errortri
+    })
+    conexion.query(`
+    CREATE TRIGGER IF NOT EXISTS ${env.DATABASE}.NuevoBodega
+    AFTER INSERT ON ${env.DATABASE}.detalle_venta
+    FOR EACH ROW
+    BEGIN
+        UPDATE ${env.DATABASE}.bodega
+        SET bodega.cantidad = bodega.cantidad - NEW.cantidad1
+        WHERE bodega.id_articulo = NEW.id_articulo;
+        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (NEW.id_articulo, CONCAT('Se vendio el articulo: ', NEW.id_detal_venta,' Cantidad: ',NEW.cantidad1));
+    END;`, (errortri) => {
+        if(errortri) throw errortri
+    })
+
+
 
 }).catch((error) => {
     console.log('mira, aqui la regaste -> ', error)

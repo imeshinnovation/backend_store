@@ -11,12 +11,13 @@ module.exports = {
 
   addarticulo: async (data) =>{
     try{
-        const{codigo, nombre,  costo, precio_venta} = data
-        const newarticulo = await querys(`INSERT INTO articulo (codigo, nombre,  costo, precio_venta) VALUES (${codigo}, "${nombre}",  ${costo}, ${precio_venta})`)
-        console.log(newarticulo)
+        const{codigo, nombre, costo, precio_venta} = data
+        const newarticulo = await querys(`INSERT INTO articulo (codigo, nombre, costo, precio_venta) VALUES (${codigo}, "${nombre}",  ${costo}, ${precio_venta})`)
+        //console.log(newarticulo)
         return newarticulo.affectedRows > 0 ? {'code': 'articulo ingresado'} : {'code': 'Articulo ya se encuentra registrado'}
     } catch (err){
      return {'code': err}
+     console.log(this.addarticulo)
     }
   },
 
