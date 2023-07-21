@@ -6,7 +6,7 @@ module.exports = {
   },
 
   artunitario:  async (id_articulo) =>{
-    return await querys("SELECT * FROM articulo WHERE id_articulo=" + id_articulo)
+    return await querys(`SELECT * FROM articulo WHERE id_articulo=(${id_articulo})`)
   },
 
   addarticulo: async (data) =>{
