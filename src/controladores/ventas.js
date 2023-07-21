@@ -10,7 +10,7 @@ module.exports = {
       const articulo = await querys(`SELECT * FROM articulo WHERE id_articulo=${detalle_venta[0].id_articulo}`)
       console.log(`${articulo}`)
 
-      //await sendEmail(`${datos_usuario[0].email}`, 'prueba', `Hola ${datos_usuario[0].nombres}, compraste ${articulo} `)
+      await sendEmail(`${datos_usuario[0].email}`, 'prueba', `Hola ${datos_usuario[0].nombres}, compraste ${articulo} `)
 
     } catch (err) {
       return {'code' : err}
