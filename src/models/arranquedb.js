@@ -85,6 +85,15 @@ mariadb.createConnection({
     END;`, (errortri) => {
         if(errortri) throw errortri
     })
+    conexion.query(`
+    CREATE TRIGGER IF NOT EXISTS ${env.DATABASE}.DeleteProduct
+    BEFORE DELETE ON ${env.DATABASE}.articulo
+    FOR EACH ROW    
+    BEGIN
+        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (id_articulo, CONCAT('Se el elimino el articulo: ', nombre));
+    END;`, (errortri) => {
+        if(errortri) throw errortri
+    })
 
     /*
     REVISAR EL CARRITO DE COMPRAS SI HAY QUE CREAR UNA TABLA EXTRA,
