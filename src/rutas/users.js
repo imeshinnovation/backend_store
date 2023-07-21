@@ -18,6 +18,9 @@ Rutas.post('/artadd', async (req, res) => {
 Rutas.delete('/artdel', async (req, res) => {
     res.json(await articulos.delarticulo(req.body))
 })
+Rutas.put('/artupdate', async (req, res) =>{
+    res.json(await articulos.artupdate(req.body))
+})
 
 //ventas.js
 Rutas.get('/ventat/:id?', async (req, res) => {

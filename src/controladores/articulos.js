@@ -34,10 +34,11 @@ module.exports = {
 artupdate: async (data) =>{
   try{
     const{costo, precio_venta, id_articulo } = data
-    const algo = await querys(`UPDATE articulo SET costo=(${costo}) precio_venta=(${precio_venta}) WHERE id_articulo=(${id_articulo})`)
-    console.log(algo)
-    return algo.affectedRows > 0 ? {'code': 'articulo actualizado'} : {'code': 'no esta funcionando'}
+    const algo2 = await querys(`UPDATE articulo SET costo=(${costo}), precio_venta=(${precio_venta}) WHERE id_articulo=(${id_articulo})`)
+    console.log(algo2)
+    return algo2.affectedRows > 0 ? {'code': 'articulo actualizado'} : {'code': 'no esta funcionando'}
   }catch (err){
+    console.log(err)
   return {'code': err}
   }
 },
