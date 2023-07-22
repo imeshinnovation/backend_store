@@ -17,7 +17,7 @@ mariadb.createConnection({
     conexion.query("create table if not exists " + env.DATABASE + ".log(id int(11) primary key not null auto_increment, id_evento int(11) not null, evento varchar(64) not null, create_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB", (error) => {        
         if(error) throw error
     })
-    conexion.query("create table if not exists " + env.DATABASE + ".articulo(id_articulo int(11) primary key not null auto_increment, codigo int(11) not null, nombre varchar(100) not null unique, costo decimal(11,2) not null, precio_venta decimal(11,2) not null) ENGINE=InnoDB", (errordtb) => {
+    conexion.query("create table if not exists " + env.DATABASE + ".articulo(id_articulo int(11) primary key auto_increment, codigo int(11) not null, nombre varchar(100) not null unique, costo decimal(11,2) not null, precio_venta decimal(11,2) not null) ENGINE=InnoDB", (errordtb) => {
         if(errordtb) throw errordtb
     })
     conexion.query("create table if not exists " + env.DATABASE + ".detalle_venta(id_detal_venta int(11) primary key not null auto_increment, id_user int(11) not null, id_articulo int(11) not null, cantidad1 int(11) not null, precio int(11) not null, descuento decimal(11,2) null, estado_venta BIT default(0)) ENGINE=InnoDB", (errordtb) => {        
@@ -90,10 +90,11 @@ mariadb.createConnection({
     BEFORE DELETE ON ${env.DATABASE}.articulo
     FOR EACH ROW    
     BEGIN
-        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (id_articulo, CONCAT('Se el elimino el articulo: ', nombre));
+        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (OLD.id_articulo, CONCAT('Se eliminó el artículo: ', OLD.nombre));
     END;`, (errortri) => {
-        if(errortri) throw errortri
-    })
+    if(errortri) throw errortri
+});
+
 
     /*
     REVISAR EL CARRITO DE COMPRAS SI HAY QUE CREAR UNA TABLA EXTRA,

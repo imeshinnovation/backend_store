@@ -21,16 +21,17 @@ module.exports = {
     }
   },
 
-  delarticulo: async (data) =>{
-  try{
-      const{id_articulo} = data
-      const oldarticulo = await querys(`DELETE FROM articulo WHERE id_articulo= (${id_articulo}) `)
-      return oldarticulo.affectedRows > 0 ? {'code': 'articulo elimado con exito'} : {'code': 'Articulo no encontrado'}
-  } catch (err){
-      return {'code': err}
-  }
-},
-
+  delarticulo: async (data) => {
+    try {
+      const { id_articulo } = data
+      const result = await querys(`DELETE FROM articulo WHERE id_articulo = (${id_articulo})`);
+      return result.affectedRows > 0 ? { 'code': 'articulo eliminado con éxito' } : { 'code': 'Artículo no encontrado' };
+    } catch (err) {
+      console.error(err);
+      return { 'code': 'Error al eliminar el artículo' };
+    }
+  },
+  
 artupdate: async (data) =>{
   try{
     const{costo, precio_venta, id_articulo } = data

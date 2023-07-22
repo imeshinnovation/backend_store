@@ -56,7 +56,6 @@ BEGIN
 END!!
 DELIMITER ;
 
-
 DROP TRIGGER IF EXISTS `NuevoProductoBodega`;
 DELIMITER &&
 CREATE TRIGGER `NuevoProductoBodega`
