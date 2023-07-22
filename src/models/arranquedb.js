@@ -51,7 +51,7 @@ mariadb.createConnection({
     AFTER UPDATE ON ${env.DATABASE}.bodega
     FOR EACH ROW
     BEGIN
-        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (NEW.id_articulo, CONCAT('Se Actualizo el articulo ', NEW.id_articulo, ' Cantidad ', NEW.cantidad));
+        INSERT INTO ${env.DATABASE}.log (id_evento, evento) VALUES (NEW.id_articulo, CONCAT('Se Actualizo bodega, el articulo ', NEW.id_articulo, ' Cantidad ', NEW.cantidad));
     END;`, (errortri) => {
         if(errortri) throw errortri
     })
@@ -99,7 +99,6 @@ mariadb.createConnection({
     /*
     REVISAR EL CARRITO DE COMPRAS SI HAY QUE CREAR UNA TABLA EXTRA,
     DISPARADOR QUE ELIMINE EN BODEGA LOS ARTICULOS QUE SE ELIMINAN EN ARTICULOS,
-    PROBAR LA FUNCIONALIDAD DE VENTA TOTAL
     */
 
 
